@@ -4,6 +4,16 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% for product in products %}
+    <div class="product">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% endif %}
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.price }} $</p>
+    </div>
+    {% endfor %}
+    {% endblock %}
 </body>
 </html>
