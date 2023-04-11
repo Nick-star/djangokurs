@@ -1,7 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <style>
+        .product {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            width: calc((100% - 40px) / 3);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     {% block content %}

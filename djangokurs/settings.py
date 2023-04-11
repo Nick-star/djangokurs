@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,10 +36,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_jinja',
     'accounts',
     'products',
     'baskets',
     'orders',
+]
+
+JINJA_EXTENSIONS = [
+    'django_jinja.builtins.csrf',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +58,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'djangokurs.urls'
+
 
 TEMPLATES = [
     {
@@ -73,7 +80,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'djangokurs.wsgi.application'
 
