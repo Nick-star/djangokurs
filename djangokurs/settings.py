@@ -36,16 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_jinja',
     'accounts',
     'products',
     'baskets',
     'orders',
 ]
 
-JINJA_EXTENSIONS = [
-    'django_jinja.builtins.csrf',
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -61,11 +57,6 @@ ROOT_URLCONF = 'djangokurs.urls'
 
 
 TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.jinja2.Jinja2",
-        "DIRS": [BASE_DIR / 'templates'],
-        "APP_DIRS": True,
-    },
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [BASE_DIR / 'templates'],
