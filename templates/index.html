@@ -17,11 +17,11 @@
         <p>{{ product.price }} $</p>
     </div>
     </a>
-
-    </a>
     {% endfor %}
     <button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
     <button id="dark-theme">Switch to Dark Theme</button>
+    <script src="{% static 'js/dark-theme.js' %}"></script>
+    <script src="{% static 'js/top-button.js' %}"></script>
     {% endblock %}
 </body>
 </html>
