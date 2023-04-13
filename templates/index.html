@@ -1,9 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% extends 'base.html' %}
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    {% block title %}
+    Veloce
+    {% endblock %}
 </head>
 <body>
     {% block content %}
@@ -18,10 +17,6 @@
         </div>
     </a>
     {% endfor %}
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
-    <button id="dark-theme">Switch to Dark Theme</button>
-    <script src="{% static 'js/dark-theme.js' %}"></script>
-    <script src="{% static 'js/top-button.js' %}"></script>
     {% endblock %}
 </body>
 </html>
