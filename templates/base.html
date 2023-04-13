@@ -8,6 +8,11 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+    <a href="{% url 'accounts:logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'accounts:login' %}">Login</a>
+{% endif %}
 {% block content %}
 {% endblock %}
 <button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
