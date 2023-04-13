@@ -10,12 +10,12 @@
     {% for product in products %}
     <a href="{% url 'products:product_detail' pk=product.pk %}">
         <div class="product">
-        {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% endif %}
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.price }} $</p>
-    </div>
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.price }} $</p>
+        </div>
     </a>
     {% endfor %}
     <button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>

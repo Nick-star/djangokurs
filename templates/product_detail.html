@@ -15,7 +15,7 @@
     {% if product.image %}
     <img src="{{ product.image.url }}" alt="{{ product.name }}">
     {% endif %}
-    <br><br>
+
     <a href="{% url 'products:update_product' pk=product.pk %}">Edit</a>
     <form action="{% url 'products:delete_product' pk=product.pk %}" method="post">
   {% csrf_token %}

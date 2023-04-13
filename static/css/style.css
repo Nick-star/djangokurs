@@ -22,3 +22,11 @@
     padding: 10px 20px;
     border-radius: 5px;
 }
+        a{
+            color:black;
+        }
+        .product{
+            width: 500px;
+            border: 1px solid #000;
+            height: 500px;
+        }
