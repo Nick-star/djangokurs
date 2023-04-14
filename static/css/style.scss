@@ -1,8 +1,11 @@
+@import "../bootstrap/scss/bootstrap";
+
 $primary-color: black;
 $secondary-color: white;
 $border-color: #000;
 $product-width: 500px;
 $product-height: 500px;
+
 
 .product {
     width: $product-width;
