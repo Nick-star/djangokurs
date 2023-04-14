@@ -1,0 +1,28 @@
+$primary-color: black;
+$secondary-color: white;
+$border-color: #000;
+$product-width: 500px;
+$product-height: 500px;
+
+.product {
+    width: $product-width;
+    border: 1px solid $border-color;
+    height: $product-height;
+}
+
+body.dark-theme {
+    background-color: $primary-color;
+    color: $secondary-color;
+}
+
+#dark-theme {
+    background-color: $secondary-color;
+    color: $secondary-color;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+a {
+    color: $primary-color;
+}
