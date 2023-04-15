@@ -6,6 +6,7 @@
 </head>
 <body>
     {% block content %}
+        <button type="button" class="btn btn-primary">Главный</button>
     {% for product in products %}
     <a href="{% url 'products:product_detail' pk=product.pk %}">
         <div class="product">
