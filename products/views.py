@@ -24,6 +24,9 @@ def add_product(request):
 @cache_page(60 * 60)
 def index(request):
     products = Product.objects.all()
+    query = request.GET.get('q')
+    if query:
+        products = products.filter(name__icontains=query)
     return render(request, 'index.html', {'products': products})
 
 @cache_page(60 * 60, key_prefix='product_{pk}')

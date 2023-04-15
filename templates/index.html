@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 <head>
     {% block title %}
-    Veloce
+        Veloce
     {% endblock %}
 </head>
 <body>
-    {% block content %}
-        <button type="button" class="btn btn-primary">Главный</button>
+{% block content %}
+    <form method="get" action="{% url 'products:index' %}">
+        <input type="text" name="q" placeholder="Search products">
+        <button type="submit">Search</button>
+    </form>
     {% for product in products %}
-    <a href="{% url 'products:product_detail' pk=product.pk %}">
-        <div class="product">
-            {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}">
-            {% endif %}
-            <h2>{{ product.name }}</h2>
-            <p>{{ product.price }} $</p>
-        </div>
-    </a>
+        <a href="{% url 'products:product_detail' pk=product.pk %}">
+            <div class="product">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.price }} $</p>
+            </div>
+        </a>
     {% endfor %}
-    {% endblock %}
+{% endblock %}
 </body>
 </html>
