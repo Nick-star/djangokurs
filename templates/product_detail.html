@@ -16,10 +16,12 @@
     <img src="{{ product.image.url }}" alt="{{ product.name }}">
     {% endif %}
 
+    {% if user.is_staff %}
     <a href="{% url 'products:update_product' pk=product.pk %}">Edit</a>
     <form action="{% url 'products:delete_product' pk=product.pk %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Delete">
-</form>
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    {% endif %}
 </body>
 </html>
