@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
-from .models import Product
-from .forms import ProductForm
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.cache import cache_page
+
+from .forms import ProductForm
+from .models import Product, Category
 
 
 @login_required
@@ -24,10 +26,20 @@ def add_product(request):
 @cache_page(60 * 60)
 def index(request):
     products = Product.objects.all()
+    categories = Category.objects.all()
+    category = request.GET.get('category')
+    if category:
+        products = products.filter(category__name=category)
+    sort = request.GET.get('sort')
+    if sort == 'price-asc':
+        products = products.order_by('price')
+    elif sort == 'price-desc':
+        products = products.order_by('-price')
     query = request.GET.get('q')
     if query:
-        products = products.filter(name__icontains=query)
-    return render(request, 'index.html', {'products': products})
+        products = products.filter(Q(name__icontains=query) | Q(description__icontains=query))
+    return render(request, 'index.html', {'products': products, 'categories': categories})
+
 
 @cache_page(60 * 60, key_prefix='product_{pk}')
 def product_detail(request, pk):

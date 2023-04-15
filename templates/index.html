@@ -6,10 +6,25 @@
 </head>
 <body>
 {% block content %}
-    <form method="get" action="{% url 'products:index' %}">
-        <input type="text" name="q" placeholder="Search products">
-        <button type="submit">Search</button>
+    <form method="GET" action="{% url 'products:index' %}">
+        <label for="category">Category:</label>
+        <select class="form-control" name="category" id="category">
+            <option value="">All categories</option>
+            {% for category in categories %}
+                <option value="{{ category.name }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="sort">Sort by:</label>
+        <select class="form-control" name="sort" id="sort">
+            <option value="">Select</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+        </select>
+        <label for="q">Search:</label>
+        <input type="text" class="form-control" name="q" id="q">
+        <button type="submit" class="btn btn-primary">Search</button>
     </form>
+
     {% for product in products %}
         <a href="{% url 'products:product_detail' pk=product.pk %}">
             <div class="product">
