@@ -38,7 +38,11 @@
         </a>
         </div>
     {% endfor %}
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
 {% endblock %}
+{% block script %}
 <script src="{% static 'js/top-button.js' %}"></script>
+<script src="{% static 'js/dark-theme.js' %}"></script>
+{% endblock %}
 </body>
 </html>
