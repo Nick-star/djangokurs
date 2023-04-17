@@ -1,23 +1,31 @@
 {% load static %}
 {% load sass_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
-<link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>
-{#<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">#}
-<link rel="icon" href="{% static 'icons/icon.svg' %}" type="image/x-icon">
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>
+    <link rel="icon" href="{% static 'icons/icon.svg' %}" type="image/x-icon">
+
 </head>
 <body>
-{% if user.is_authenticated %}
-    <a href="{% url 'accounts:logout' %}">Logout</a>
-{% else %}
-    <a href="{% url 'accounts:login' %}">Login</a>
-{% endif %}
+<div class="menu">
+    <ul>
+        <li>Корзина</li>
+        <li><a href="{% url 'products:index' %}">Главная</a></li>
+        <li>Заказы</li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'accounts:logout' %}">Выйти</a></li>
+        {% else %}
+            <li><a href="{% url 'accounts:login' %}">Войти</a></li>
+        {% endif %}
+    </ul>
+</div>
+<button onclick="topFunction()" id="myBtn" title="Вернуться наверх">Наверх</button>
+<button id="dark-theme">Переключить на тёмную тему</button>
 {% block content %}
 {% endblock %}
-<button onclick="topFunction()" id="myBtn" title="Go to top">Up</button>
-<button id="dark-theme">Switch to Dark Theme</button>
 
 <script src="{% static 'js/dark-theme.js' %}"></script>
 <script src="{% static 'js/top-button.js' %}"></script>
