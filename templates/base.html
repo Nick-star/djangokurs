@@ -12,7 +12,7 @@
 <body>
 <div class="menu">
     <ul>
-        <li>Корзина</li>
+        <li><a href="{% url 'baskets:basket' %}">Корзина</a></li>
         <li><a href="{% url 'products:index' %}">Главная</a></li>
         <li>Заказы</li>
         {% if user.is_authenticated %}

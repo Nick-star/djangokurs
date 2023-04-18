@@ -22,3 +22,8 @@ def add_to_basket(request, pk):
         item = BasketItem(basket=basket, product=product, quantity=1)
         item.save()
     return redirect('baskets:basket')
+
+def delete_item(request, pk):
+    item = BasketItem.objects.get(pk=pk)
+    item.delete()
+    return redirect('baskets:basket')
