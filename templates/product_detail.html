@@ -13,6 +13,11 @@
     <img src="{{ product.image.url }}" alt="{{ product.name }}">
     {% endif %}
 
+    <form action="{% url 'baskets:add_to_basket' product.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Add to Basket</button>
+    </form>
+
     {% if user.is_staff %}
     <a href="{% url 'products:update_product' pk=product.pk %}">Edit</a>
     <form action="{% url 'products:delete_product' pk=product.pk %}" method="post">

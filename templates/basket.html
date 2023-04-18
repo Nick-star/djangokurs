@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Basket
+{% endblock %}
+
+{% block content %}
+{% if basket.items.all %}
+    {% for item in basket.items.all %}
+        <div class="item">
+            <h3>{{ item.product.name }}</h3>
+            <p>Price: {{ item.product.price }}</p>
+            <p>Quantity: {{ item.quantity }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Your basket is empty.</p>
+{% endif %}
+{% endblock %}
