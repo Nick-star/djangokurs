@@ -5,9 +5,9 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>
+{#        <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>#}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <link rel="icon" href="{% static 'icons/icon.svg' %}" type="image/x-icon">
-
 </head>
 <body>
 <div class="menu">
@@ -22,7 +22,6 @@
         {% endif %}
     </ul>
 </div>
-<button onclick="topFunction()" id="myBtn" title="Вернуться наверх">Наверх</button>
 <button id="dark-theme">Переключить на тёмную тему</button>
 {% block content %}
 {% endblock %}
