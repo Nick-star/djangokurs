@@ -7,6 +7,11 @@ $border-color: #000;
 $product-width: 500px;
 $product-height: 500px;
 
+body {
+  margin: 0;
+  padding: 0;
+
+}
 
 .product {
     width: $product-width;
@@ -21,7 +26,7 @@ body.dark-theme {
 
 #dark-theme {
     background-color: $secondary-color;
-    color: $secondary-color;
+    color: $primary-color;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -29,6 +34,12 @@ body.dark-theme {
 
 a {
     color: $primary-color;
+    text-decoration: none;
+
+}
+a:hover{
+  color:$primary-color;
+  text-decoration: none;
 }
 .menu {
   display: flex;
@@ -52,12 +63,13 @@ a {
 }
 
 .menu a {
-  color: #333;
+  color: $primary-color;
   text-decoration: none;
 }
 
 .menu a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  color: $primary-color
 }
 .products-container {
   display: grid;
@@ -75,6 +87,6 @@ a {
   height: 300px;
   object-fit: contain;
 }
-select{
+.form-control{
   width: 500px;
 }

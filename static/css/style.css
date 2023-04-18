@@ -8358,6 +8358,10 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
+body {
+  margin: 0;
+  padding: 0; }
+
 .product {
   width: 500px;
   border: 1px solid #000;
@@ -8369,13 +8373,18 @@ body.dark-theme {
 
 #dark-theme {
   background-color: white;
-  color: white;
+  color: black;
   border: none;
   padding: 10px 20px;
   border-radius: 5px; }
 
 a {
-  color: black; }
+  color: black;
+  text-decoration: none; }
+
+a:hover {
+  color: black;
+  text-decoration: none; }
 
 .menu {
   display: flex;
@@ -8396,11 +8405,12 @@ a {
   margin: 0 10px; }
 
 .menu a {
-  color: #333;
+  color: black;
   text-decoration: none; }
 
 .menu a:hover {
-  text-decoration: underline; }
+  text-decoration: none;
+  color: black; }
 
 .products-container {
   display: grid;
@@ -8417,7 +8427,7 @@ a {
   height: 300px;
   object-fit: contain; }
 
-select {
+.form-control {
   width: 500px; }
 
 /*# sourceMappingURL=style.css.map */

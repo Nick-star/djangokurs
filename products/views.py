@@ -7,7 +7,7 @@ from django.views.decorators.cache import cache_page
 from .forms import ProductForm
 from .models import Product, Category
 
-
+# TODO: AJAX and CACHE
 @login_required
 def add_product(request):
     if request.method == 'POST':
@@ -23,7 +23,6 @@ def add_product(request):
     return render(request, 'add_product.html', context)
 
 
-@cache_page(60 * 60)
 def index(request):
     products = Product.objects.all()
     categories = Category.objects.all()
@@ -41,7 +40,6 @@ def index(request):
     return render(request, 'index.html', {'products': products, 'categories': categories})
 
 
-@cache_page(60 * 60, key_prefix='product_{pk}')
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     context = {
