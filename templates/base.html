@@ -5,16 +5,16 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
-{#        <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>#}
-        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    {#        <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>#}
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <link rel="icon" href="{% static 'icons/icon.svg' %}" type="image/x-icon">
 </head>
 <body>
 <div class="menu">
     <ul>
-        <li><a href="{% url 'baskets:basket' %}">Корзина</a></li>
         <li><a href="{% url 'products:index' %}">Главная</a></li>
         <li>Заказы</li>
+        <li><a href="{% url 'baskets:basket' %}">Корзина</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'accounts:logout' %}">Выйти</a></li>
         {% else %}

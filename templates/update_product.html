@@ -4,7 +4,7 @@
     {% block title %}Update Product{% endblock %}
 </head>
 {% block content %}
-<body>
+    <body>
     <h1>Update Product</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -34,6 +34,6 @@
         </div>
         <button type="submit">Update Product</button>
     </form>
-</body>
+    </body>
 {% endblock %}
 
