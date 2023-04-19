@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <title>{% block title %}{% endblock %}</title>
-    {#        <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>#}
+          <link href="{% sass_src 'css/style.scss' %}" rel="stylesheet" type="text/css"/>
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
     <link rel="icon" href="{% static 'icons/icon.svg' %}" type="image/x-icon">
 </head>
@@ -21,9 +21,11 @@
             <li><a href="{% url 'accounts:login' %}">Войти</a></li>
             <li><a href="{% url 'accounts:register' %}">Регистрация</a></li>
         {% endif %}
+        <li id="theme-button"><button id="dark-theme"><img id="theme-icon" src="../static/icons/dark.png" alt=""></button></li>
     </ul>
 </div>
-<button id="dark-theme">Переключить на тёмную тему</button>
+
+
 {% block content %}
 {% endblock %}
 

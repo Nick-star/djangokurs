@@ -6,7 +6,7 @@
 </head>
 <body>
 {% block content %}
-    <form method="GET" action="{% url 'products:index' %}">
+    <form class="filter" method="GET" action="{% url 'products:index' %}">
         <label for="category">Категория:</label>
         <select class="form-control" name="category" id="category">
             <option value="">Все категории</option>
@@ -22,7 +22,7 @@
         </select>
         <label for="q">Поиск:</label>
         <input type="text" class="form-control" name="q" id="q">
-        <button type="submit" class="btn btn-primary">Найти</button>
+        <button type="submit" class="btn-btn-primary">Найти</button>
     </form>
 
     <div class="products-container">
