@@ -1,8 +1,11 @@
+var darkThemeButton = document.getElementById("dark-theme");
 document.getElementById("dark-theme").addEventListener("click", function() {
-  document.body.classList.toggle("dark-theme");
-  if (document.body.classList.contains("dark-theme")) {
-    document.getElementById("theme-icon").src = "{% static 'icons/sun.svg' %}";
-  } else {
-    document.getElementById("theme-icon").src = "{% static 'icons/dark.svg' %}";
-  }
+    document.body.classList.toggle("dark-theme");
+
+    var svg = document.getElementById("theme-icon");
+    if (document.body.classList.contains("dark-theme")) {
+        svg.src = window.location.origin + "/static/icons/dark.svg";
+    } else {
+        svg.src = window.location.origin + "/static/icons/sun.svg";
+    }
 });
