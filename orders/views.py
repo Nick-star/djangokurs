@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from baskets.models import Basket
 from .models import Order, OrderItem, ShippingAddress
@@ -55,3 +55,9 @@ def checkout_success(request):
 def order_history(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'order_history.html', {'orders': orders})
+
+@login_required
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    order_items = order.orderitem_set.all()
+    return render(request, 'order_detail.html', {'order': order, 'order_items': order_items})
