@@ -10,7 +10,8 @@ def basket(request):
         basket = request.user.basket
     except Basket.DoesNotExist:
         basket = Basket.objects.create(user=request.user)
-    return render(request, 'basket.html', {'basket': basket})
+    total_price = sum(item.product.price * item.quantity for item in basket.items.all())
+    return render(request, 'basket.html', {'basket': basket, 'total_price': total_price})
 
 
 def add_to_basket(request, pk):
