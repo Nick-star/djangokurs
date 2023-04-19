@@ -13,7 +13,7 @@
 <div class="menu">
     <ul>
         <li><a href="{% url 'products:index' %}">Главная</a></li>
-        <li>Заказы</li>
+        <li><a href="{% url 'orders:order_history' %}">Заказы</a></li>
         <li><a href="{% url 'baskets:basket' %}">Корзина</a></li>
         {% if user.is_authenticated %}
             <li><a href="{% url 'accounts:logout' %}">Выйти</a></li>
