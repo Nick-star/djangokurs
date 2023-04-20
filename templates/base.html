@@ -12,7 +12,7 @@
 <body>
 <div class="menu">
     <ul>
-        <li><a href="{% url 'products:index' %}">Главная</a></li>
+        <li><a href="{% url 'products:index' %}"><img id="logo" src="../static/icons/logo.svg" alt="Главная" width="180px" height="100px"></a></li>
         <li><a href="{% url 'orders:order_history' %}">Заказы</a></li>
         <li><a href="{% url 'baskets:basket' %}">Корзина</a></li>
         {% if user.is_authenticated %}
@@ -21,7 +21,7 @@
             <li><a href="{% url 'accounts:login' %}">Войти</a></li>
             <li><a href="{% url 'accounts:register' %}">Регистрация</a></li>
         {% endif %}
-        <li id="theme-button"><button id="dark-theme"><img id="theme-icon" src="../static/icons/sun.svg" alt="Тема"></button></li>
+        <li id="theme-button"><button id="dark-theme"><img id="theme-icon" src="../static/icons/dark.svg" alt="Тема"></button></li>
     </ul>
 </div>
 
