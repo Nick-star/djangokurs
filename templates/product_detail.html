@@ -5,24 +5,24 @@
 {% block content %}
     <body>
     <h1>{{ product.name }}</h1>
-    <p>Price: {{ product.price }}</p>
-    <p>Description: {{ product.description }}</p>
-    <p>Stock: {{ product.stock }}</p>
-    <p>Category: {{ product.category }}</p>
+    <p>Цена: {{ product.price }}</p>
+    <p>Описание: {{ product.description }}</p>
+    <p>Количество на складе: {{ product.stock }}</p>
+    <p>Категория: {{ product.category }}</p>
     {% if product.image %}
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
     {% endif %}
 
     <form action="{% url 'baskets:add_to_basket' product.pk %}" method="post">
         {% csrf_token %}
-        <button type="submit">Add to Basket</button>
+        <button type="submit">Добавить в корзину</button>
     </form>
 
     {% if user.is_staff %}
-        <a href="{% url 'products:update_product' pk=product.pk %}">Edit</a>
+        <a href="{% url 'products:update_product' pk=product.pk %}">Редактировать</a>
         <form action="{% url 'products:delete_product' pk=product.pk %}" method="post">
             {% csrf_token %}
-            <button type="submit">Delete</button>
+            <button type="submit">Удалить</button>
         </form>
     {% endif %}
     </body>

@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Order Details
+    Детали заказа
 {% endblock %}
 
 {% block content %}
-    <h1>Order Details</h1>
-    <h2>Order ID: {{ order.id }}</h2>
-    <p>Date: {{ order.created_at|date:'Y-m-d H:i:s' }}</p>
-    <p>Status: {{ order.status }}</p>
+    <h1>Детали заказа</h1>
+    <h2>ID: {{ order.id }}</h2>
+    <p>Дата создания: {{ order.created_at|date:'Y-m-d H:i:s' }}</p>
+    <p>Статус: {{ order.status }}</p>
 
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
+                <th scope="col">Товар</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Цена</th>
             </tr>
         </thead>
         <tbody>

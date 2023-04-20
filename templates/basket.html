@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Basket
+    Корзина
 {% endblock %}
 
 {% block content %}
@@ -10,11 +10,10 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Actions</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Товар</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -28,21 +27,21 @@
                     <td>
                         <form action="{% url 'baskets:delete_item' item.pk %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
             <tr>
         <td colspan="3"></td>
-        <td>Total: {{ total_price }}</td>
+        <td>Всего: {{ total_price }}</td>
         <td></td>
       </tr>
             </tbody>
         </table>
-        <a href="{% url 'orders:checkout' %}" class="btn btn-primary">Checkout</a>
+        <a href="{% url 'orders:checkout' %}" class="btn btn-primary">Оформить заказ</a>
     {% else %}
-        <p>Your basket is empty.</p>
+        <p>Ваша корзина пуста.</p>
     {% endif %}
 
 {% endblock %}

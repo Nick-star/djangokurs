@@ -1,49 +1,49 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Checkout
+Оплата
 {% endblock %}
 
 {% block content %}
-<h1>Checkout</h1>
+<h1>Оплата</h1>
 
-<h2>Total: {{ total_price }}</h2>
+<h2>Всего: {{ total_price }}</h2>
 
 <form action="{% url 'orders:create_order' %}" method="post">
   {% csrf_token %}
   <div>
-    <label for="first_name">First Name:</label>
+    <label for="first_name">Имя:</label>
     <input type="text" name="first_name" id="first_name" required>
   </div>
   <div>
-    <label for="last_name">Last Name:</label>
+    <label for="last_name">Фамилия:</label>
     <input type="text" name="last_name" id="last_name" required>
   </div>
   <div>
-    <label for="address_line1">Address Line 1:</label>
+    <label for="address_line1">Адресная строка 1:</label>
     <input type="text" name="address_line1" id="address_line1" required>
   </div>
   <div>
-    <label for="address_line2">Address Line 2 (optional):</label>
+    <label for="address_line2">Адресная строка 2 (optional):</label>
     <input type="text" name="address_line2" id="address_line2">
   </div>
   <div>
-    <label for="city">City:</label>
+    <label for="city">Город:</label>
     <input type="text" name="city" id="city" required>
   </div>
   <div>
-    <label for="state">State/Province:</label>
+    <label for="state">Штат/провинция:</label>
     <input type="text" name="state" id="state" required>
   </div>
   <div>
-    <label for="postal_code">Postal Code:</label>
+    <label for="postal_code">Почтовый индекс:</label>
     <input type="text" name="postal_code" id="postal_code" required>
   </div>
   <div>
-    <label for="country">Country:</label>
+    <label for="country">Страна:</label>
     <input type="text" name="country" id="country" required>
   </div>
-  <button type="submit">Place Order</button>
+  <button type="submit">Разместить заказ</button>
 </form>
 
 {% endblock %}
