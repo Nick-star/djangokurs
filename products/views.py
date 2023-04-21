@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.cache import cache_page
-
 from .forms import ProductForm
 from .models import Product, Category
 

@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
+{% load static %}
 {% block title %}
-    Order History
+    {% trans 'История заказов' %}
 {% endblock %}
 
 {% block content %}
-    <h1>История заказов</h1>
+    <h1>{% trans 'История заказов' %}</h1>
 
     {% if orders %}
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Дата создания</th>
-                    <th scope="col">Статус</th>
+                    <th scope="col">{% trans 'Дата создания' %}</th>
+                    <th scope="col">{% trans 'Статус' %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,6 @@
             </tbody>
         </table>
     {% else %}
-        <p>У вас нет заказов.</p>
+        <p>{% trans 'У вас нет заказов.' %}</p>
     {% endif %}
 {% endblock %}

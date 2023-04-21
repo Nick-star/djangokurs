@@ -1,49 +1,50 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
+{% load static %}
 {% block title %}
-Оплата
+{% trans 'Оплата' %}
 {% endblock %}
 
 {% block content %}
-<h1>Оплата</h1>
+<h1>{% trans 'Оплата' %}</h1>
 
-<h2>Всего: {{ total_price }} $</h2>
+<h2>{% trans 'Всего:' %} {{ total_price }} $</h2>
 
 <form action="{% url 'orders:create_order' %}" method="post">
   {% csrf_token %}
   <div>
-    <label for="first_name">Имя:</label>
+    <label for="first_name">{% trans 'Имя:' %}</label>
     <input type="text" name="first_name" id="first_name" required>
   </div>
   <div>
-    <label for="last_name">Фамилия:</label>
+    <label for="last_name">{% trans 'Фамилия:' %}</label>
     <input type="text" name="last_name" id="last_name" required>
   </div>
   <div>
-    <label for="address_line1">Адресная строка 1:</label>
+    <label for="address_line1">{% trans 'Адресная строка 1:' %}</label>
     <input type="text" name="address_line1" id="address_line1" required>
   </div>
   <div>
-    <label for="address_line2">Адресная строка 2 (optional):</label>
+    <label for="address_line2">{% trans 'Адресная строка 2 (необязательно):' %}</label>
     <input type="text" name="address_line2" id="address_line2">
   </div>
   <div>
-    <label for="city">Город:</label>
+    <label for="city">{% trans 'Город:' %}</label>
     <input type="text" name="city" id="city" required>
   </div>
   <div>
-    <label for="state">Штат/провинция:</label>
+    <label for="state">{% trans 'Штат/провинция:' %}</label>
     <input type="text" name="state" id="state" required>
   </div>
   <div>
-    <label for="postal_code">Почтовый индекс:</label>
+    <label for="postal_code">{% trans 'Почтовый индекс:' %}</label>
     <input type="text" name="postal_code" id="postal_code" required>
   </div>
   <div>
-    <label for="country">Страна:</label>
+    <label for="country">{% trans 'Страна:' %}</label>
     <input type="text" name="country" id="country" required>
   </div>
-  <button type="submit">Разместить заказ</button>
+  <button type="submit">{% trans 'Разместить заказ' %}</button>
 </form>
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

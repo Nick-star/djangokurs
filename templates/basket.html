@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
 
 {% block title %}
-    Корзина
+    {% trans 'Корзина' %}
 {% endblock %}
 
 {% block content %}
@@ -10,10 +12,10 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Товар</th>
-                <th scope="col">Цена</th>
-                <th scope="col">Количество</th>
-                <th scope="col">Действия</th>
+                <th scope="col">{% trans 'Товар' %}</th>
+                <th scope="col">{% trans 'Цена' %}</th>
+                <th scope="col">{% trans 'Количество' %}</th>
+                <th scope="col">{% trans 'Действия' %}</th>
             </tr>
             </thead>
             <tbody>
@@ -27,21 +29,21 @@
                     <td>
                         <form action="{% url 'baskets:delete_item' item.pk %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                            <button type="submit" class="btn btn-danger btn-sm">{% trans 'Удалить' %}</button>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
             <tr>
         <td colspan="3"></td>
-        <td>Всего: {{ total_price }} $</td>
+        <td>{% trans 'Всего' %}: {{ total_price }} $</td>
         <td></td>
       </tr>
             </tbody>
         </table>
-        <a href="{% url 'orders:checkout' %}" class="btn btn-primary">Оформить заказ</a>
+        <a href="{% url 'orders:checkout' %}" class="btn btn-primary">{% trans 'Оформить заказ' %}</a>
     {% else %}
-        <p>Ваша корзина пуста.</p>
+        <p>{% trans 'Ваша корзина пуста.' %}</p>
     {% endif %}
 
 {% endblock %}

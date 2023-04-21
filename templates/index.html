@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
 <head>
     {% block title %}
         Veloce
@@ -7,22 +10,22 @@
 <body>
 {% block content %}
     <form class="filter" method="GET" action="{% url 'products:index' %}">
-        <label for="category">Категория:</label>
+        <label for="category">{% trans 'Категория:' %}</label>
         <select class="form-control" name="category" id="category">
-            <option value="">Все категории</option>
+            <option value="">{% trans 'Все категории' %}</option>
             {% for category in categories %}
                 <option value="{{ category.name }}">{{ category.name }}</option>
             {% endfor %}
         </select>
-        <label for="sort">Сортировать по:</label>
+        <label for="sort">{% trans 'Сортировать по:' %}</label>
         <select class="form-control" name="sort" id="sort">
-            <option value="">Выбрать...</option>
-            <option value="price-asc">Цена ↑</option>
-            <option value="price-desc">Цена ↓</option>
+            <option value="">{% trans 'Выбрать...' %}</option>
+            <option value="price-asc">{% trans 'Цена ↑' %}</option>
+            <option value="price-desc">{% trans 'Цена ↓' %}</option>
         </select>
-        <label for="q">Поиск:</label>
+        <label for="q">{% trans 'Поиск:' %}</label>
         <input type="text" class="form-control" name="q" id="q">
-        <button type="submit" class="btn-btn-primary">Найти</button>
+        <button type="submit" class="btn-btn-primary">{% trans 'Найти' %}</button>
     </form>
 
     <div class="products-container">
@@ -38,7 +41,8 @@
             </a>
         {% endfor %}
     </div>
-    <button onclick="topFunction()" id="myBtn" title="Вернуться наверх">Наверх</button>
+    <button onclick="topFunction()" id="myBtn" title="Вернуться наверх">{% trans 'Наверх' %}</button>
+
 {% endblock %}
 </body>
 </html>

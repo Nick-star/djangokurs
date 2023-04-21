@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
 
-{% block title %}Login{% endblock %}
+{% block title %}{% trans 'Вход' %}{% endblock %}
 
 {% block content %}
-    <h2>Вход</h2>
+    <h2>{% trans 'Вход' %}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Войти</button>
+        <button type="submit">{% trans 'Войти' %}</button>
     </form>
 {% endblock %}

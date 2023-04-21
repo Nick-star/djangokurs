@@ -1,38 +1,39 @@
 {% extends 'base.html' %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
-    {% block title %}Обновление товара{% endblock %}
+    {% block title %}{% trans 'Обновление товара' %}{% endblock %}
 </head>
 {% block content %}
     <body>
-    <h1>Обновить товар</h1>
+    <h1>{% trans 'Обновить товар' %}</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
-            <label for="id_name">Название:</label>
+            <label for="id_name">{% trans 'Название:' %}</label>
             {{ form.name }}
         </div>
         <div>
-            <label for="id_description">Описание:</label>
+            <label for="id_description">{% trans 'Описание:' %}</label>
             {{ form.description }}
         </div>
         <div>
-            <label for="id_price">Цена:</label>
+            <label for="id_price">{% trans 'Цена:' %}</label>
             {{ form.price }}
         </div>
         <div>
-            <label for="id_image">Изображение:</label>
+            <label for="id_image">{% trans 'Изображение:' %}</label>
             {{ form.image }}
         </div>
         <div>
-            <label for="id_stock">Количество:</label>
+            <label for="id_stock">{% trans 'Количество:' %}</label>
             {{ form.stock }}
         </div>
         <div>
-            <label for="id_category">Категория:</label>
+            <label for="id_category">{% trans 'Категория:' %}</label>
             {{ form.category }}
         </div>
-        <button type="submit">Обновить</button>
+        <button type="submit">{% trans 'Обновить' %}</button>
     </form>
     </body>
 {% endblock %}
