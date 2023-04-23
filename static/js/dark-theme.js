@@ -4,8 +4,8 @@ document.getElementById("dark-theme").addEventListener("click", function() {
 
     var svg = document.getElementById("theme-icon");
     if (document.body.classList.contains("dark-theme")) {
-        svg.src = window.location.origin + "/static/icons/dark.svg";
-    } else {
         svg.src = window.location.origin + "/static/icons/sun.svg";
+    } else {
+        svg.src = window.location.origin + "/static/icons/dark.svg";
     }
 });

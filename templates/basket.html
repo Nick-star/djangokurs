@@ -25,7 +25,12 @@
                     <td><a href="{% url 'products:product_detail' pk=item.product.pk %}">{{ item.product.name }}</a>
                     </td>
                     <td>{{ item.product.price }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>
+                         <button type="button" class="btn btn-primary btn-sm increase" onclick="increaseItem({{ item.pk }})">+</button>
+                        <span id="item-quantity-{{ item.pk }}">{{ item.quantity }}</span>
+                        <button type="button" class="btn btn-primary btn-sm decrease" onclick="decreaseItem({{ item.pk }})">-</button>
+
+                    </td>
                     <td>
                         <form action="{% url 'baskets:delete_item' item.pk %}" method="post">
                             {% csrf_token %}
@@ -45,5 +50,47 @@
     {% else %}
         <p>{% trans 'Ваша корзина пуста.' %}</p>
     {% endif %}
+    {% csrf_token %}
+    <script>
+    function increaseItem(pk) {
+  $.ajax({
+    url: `/basket/increase/${pk}/`,
+    method: 'POST',
+    data: {
+      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+    },
+    success: function(response) {
+      if (response.status === 'success') {
+        const currentQuantityElement = $(`#item-quantity-${pk}`);
+        const currentQuantity = parseInt(currentQuantityElement.text());
+        currentQuantityElement.text(currentQuantity + 1);
+      }
+    }
+  });
+}
+
+function decreaseItem(pk) {
+  $.ajax({
+    url: `/basket/decrease/${pk}/`,
+    method: 'POST',
+    data: {
+      csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+    },
+    success: function(response) {
+      if (response.status === 'success') {
+        const currentQuantityElement = $(`#item-quantity-${pk}`);
+        const currentQuantity = parseInt(currentQuantityElement.text());
+        if (currentQuantity > 1) {
+          currentQuantityElement.text(currentQuantity - 1);
+        }
+      }
+    }
+  });
+}
+
+</script>
+{% endblock %}
+
+{% block extra_js %}
 
 {% endblock %}

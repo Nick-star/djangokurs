@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Basket, BasketItem
 from products.models import Product
+from django.http import JsonResponse
 
 
 @login_required
@@ -31,3 +32,20 @@ def delete_item(request, pk):
     item = BasketItem.objects.get(pk=pk)
     item.delete()
     return redirect('baskets:basket')
+
+
+@login_required
+def increase_item(request, pk):
+    item = BasketItem.objects.get(pk=pk)
+    item.quantity += 1
+    item.save()
+    return JsonResponse({'status': 'success'})
+
+
+@login_required
+def decrease_item(request, pk):
+    item = BasketItem.objects.get(pk=pk)
+    if item.quantity > 1:
+        item.quantity -= 1
+        item.save()
+    return JsonResponse({'status': 'success'})
