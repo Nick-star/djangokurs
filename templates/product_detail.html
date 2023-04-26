@@ -16,11 +16,12 @@
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% endif %}
     {% endcache %}
-
-    <form action="{% url 'baskets:add_to_basket' product.pk %}" method="post">
-        {% csrf_token %}
-        <button type="submit">{% trans 'Добавить в корзину' %}</button>
-    </form>
+    {% if user.is_authenticated %}
+        <form action="{% url 'baskets:add_to_basket' product.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">{% trans 'Добавить в корзину' %}</button>
+        </form>
+    {% endif %}
 
     {% if user.is_staff %}
         <a href="{% url 'products:update_product' pk=product.pk %}">{% trans 'Редактировать' %}</a>
