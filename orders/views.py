@@ -24,6 +24,9 @@ def create_order(request):
         for item in items:
             order_item = OrderItem(order=order, product=item.product, quantity=item.quantity)
             order_item.save()
+            product = item.product
+            product.stock -= item.quantity
+            product.save()
 
         # Create ShippingAddress
         first_name = request.POST.get('first_name')

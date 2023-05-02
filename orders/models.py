@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from products.models import Product
 
+
 class Order(models.Model):
     STATUS_CHOICES = (
         ('Pending', 'Pending'),
@@ -18,6 +19,7 @@ class Order(models.Model):
     def __str__(self):
         return f'{self.user.username} - Order {self.id}'
 
+
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -25,6 +27,7 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'{self.product.name} - {self.quantity}'
+
 
 class ShippingAddress(models.Model):
     order = models.OneToOneField(Order, on_delete=models.CASCADE, related_name='shipping_address')

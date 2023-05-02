@@ -19,7 +19,7 @@
     {% if user.is_authenticated %}
         <form action="{% url 'baskets:add_to_basket' product.pk %}" method="post">
             {% csrf_token %}
-            <button type="submit">{% trans 'Добавить в корзину' %}</button>
+            <button type="submit" class="btn btn-dark">{% trans 'Добавить в корзину' %}</button>
         </form>
     {% endif %}
 
