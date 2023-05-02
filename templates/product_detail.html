@@ -16,7 +16,7 @@
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% endif %}
     {% endcache %}
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and product.stock > 0 %}
         <form action="{% url 'baskets:add_to_basket' product.pk %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-dark">{% trans 'Добавить в корзину' %}</button>
