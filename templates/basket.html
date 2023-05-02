@@ -41,7 +41,7 @@
             {% endfor %}
             <tr>
         <td colspan="3"></td>
-        <td>{% trans 'Всего' %}: {{ total_price }} $</td>
+        <td id="total-price">{% trans 'Всего' %}: {{ total_price }} $</td>
         <td></td>
       </tr>
             </tbody>
@@ -52,7 +52,12 @@
     {% endif %}
     {% csrf_token %}
     <script>
-    function increaseItem(pk) {
+ function updateTotalPrice(newTotalPrice) {
+  const totalPriceElement = $('#total-price');
+  totalPriceElement.text(`Всего: ${newTotalPrice.toFixed(2)} $`);
+}
+
+function increaseItem(pk) {
   $.ajax({
     url: `/basket/increase/${pk}/`,
     method: 'POST',
@@ -64,6 +69,8 @@
         const currentQuantityElement = $(`#item-quantity-${pk}`);
         const currentQuantity = parseInt(currentQuantityElement.text());
         currentQuantityElement.text(currentQuantity + 1);
+
+        updateTotalPrice(response.new_total_price);
       }
     }
   });
@@ -83,6 +90,8 @@ function decreaseItem(pk) {
         if (currentQuantity > 1) {
           currentQuantityElement.text(currentQuantity - 1);
         }
+
+        updateTotalPrice(response.new_total_price);
       }
     }
   });

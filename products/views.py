@@ -7,7 +7,6 @@ from .forms import ProductForm
 from .models import Product, Category
 
 
-# TODO: AJAX and CACHE
 @login_required
 def add_product(request):
     if request.method == 'POST':

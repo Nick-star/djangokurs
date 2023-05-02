@@ -39,7 +39,8 @@ def increase_item(request, pk):
     item = BasketItem.objects.get(pk=pk)
     item.quantity += 1
     item.save()
-    return JsonResponse({'status': 'success'})
+    new_total_price = sum(i.product.price * i.quantity for i in item.basket.items.all())
+    return JsonResponse({'status': 'success', 'new_total_price': float(new_total_price)})
 
 
 @login_required
@@ -48,4 +49,5 @@ def decrease_item(request, pk):
     if item.quantity > 1:
         item.quantity -= 1
         item.save()
-    return JsonResponse({'status': 'success'})
+    new_total_price = sum(i.product.price * i.quantity for i in item.basket.items.all())
+    return JsonResponse({'status': 'success', 'new_total_price': float(new_total_price)})
