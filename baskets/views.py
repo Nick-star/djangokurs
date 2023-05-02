@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from .models import Basket, BasketItem
-from products.models import Product
 from django.http import JsonResponse
+from django.shortcuts import render, redirect
+
+from products.models import Product
+from .models import Basket, BasketItem
 
 
 @login_required
@@ -28,10 +29,11 @@ def add_to_basket(request, pk):
     return redirect('baskets:basket')
 
 
+@login_required
 def delete_item(request, pk):
     item = BasketItem.objects.get(pk=pk)
     item.delete()
-    return redirect('baskets:basket')
+    return JsonResponse({'status': 'success'})
 
 
 @login_required

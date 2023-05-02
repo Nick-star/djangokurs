@@ -20,11 +20,11 @@
             </thead>
             <tbody>
             {% for item in basket.items.all %}
-                <tr>
+                <tr class="basket-item-row" id="item-row-{{ item.pk }}">
                     <th scope="row">{{ forloop.counter }}</th>
                     <td><a href="{% url 'products:product_detail' pk=item.product.pk %}">{{ item.product.name }}</a>
                     </td>
-                    <td>{{ item.product.price }}</td>
+                    <td id="item-price-{{ item.pk }}">{{ item.product.price }}</td>
                     <td>
                          <button type="button" class="btn btn-primary btn-sm increase" onclick="increaseItem({{ item.pk }})">+</button>
                         <span id="item-quantity-{{ item.pk }}">{{ item.quantity }}</span>
@@ -32,16 +32,13 @@
 
                     </td>
                     <td>
-                        <form action="{% url 'baskets:delete_item' item.pk %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm">{% trans 'Удалить' %}</button>
-                        </form>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteItem({{ item.pk }})">{% trans 'Удалить' %}</button>
                     </td>
                 </tr>
             {% endfor %}
             <tr>
         <td colspan="3"></td>
-        <td id="total-price">{% trans 'Всего' %}: {{ total_price }} $</td>
+        <td id="total-price">{% trans 'Всего' %}: <span id="total-price-value">{{ total_price }}</span> $</td>
         <td></td>
       </tr>
             </tbody>
@@ -52,9 +49,49 @@
     {% endif %}
     {% csrf_token %}
     <script>
+function deleteItem(pk) {
+    const deleteURL = `/basket/delete_item/${pk}/`;
+    const deferred = $.Deferred();
+
+    $.ajax({
+        url: deleteURL,
+        method: 'POST',
+        data: {
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+        },
+        success: function() {
+            deferred.resolve();
+        },
+        error: function() {
+            deferred.reject();
+        }
+    });
+
+    $.when(deferred).done(function () {
+        const removedItemPrice = parseFloat($(`#item-price-${pk}`).text());
+        const removedItemQuantity = parseInt($(`#item-quantity-${pk}`).text());
+
+        const newTotalPrice = parseFloat($('#total-price-value').text()) - (removedItemPrice * removedItemQuantity);
+        updateTotalPrice(newTotalPrice);
+        $(`#item-row-${pk}`).remove();
+        if ($('.table tbody .basket-item-row').length === 0) {
+            updateTotalPrice(0);
+        }
+
+
+
+    }).fail(function () {
+        console.error('Ошибка при удалении');
+
+    }).always(function () {
+        console.log('Удаление произошло успешно');
+    });
+}
+
+
  function updateTotalPrice(newTotalPrice) {
-  const totalPriceElement = $('#total-price');
-  totalPriceElement.text(`Всего: ${newTotalPrice.toFixed(2)} $`);
+  const totalPriceElement = $('#total-price-value');
+  totalPriceElement.text(`${newTotalPrice.toFixed(2)}`);
 }
 
 function increaseItem(pk) {
