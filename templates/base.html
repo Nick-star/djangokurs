@@ -17,6 +17,9 @@
         <li><a href="{% url 'orders:order_history' %}">{% trans 'Заказы' %}</a></li>
         <li><a href="{% url 'baskets:basket' %}">{% trans 'Корзина' %}</a></li>
         {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <li><a href="{% url 'admin:index' %}">{% trans 'Админ' %}</a></li>
+            {% endif %}
             <li><a href="{% url 'accounts:logout' %}">{% trans 'Выйти' %}</a></li>
         {% else %}
             <li><a href="{% url 'accounts:login' %}">{% trans 'Войти' %}</a></li>
