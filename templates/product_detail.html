@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load stars_filters %}
+
 {% load cache %}
 {% block title %}
     {{ product.name }}
 {% endblock %}
 {% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <body>
+    {% with num_stars=avg_rating|round_value|to_int %}
+    <span class="heading">User Rating</span>
+    {% for i in '12345'|make_list %}
+        <span class="fa fa-star {% if i <= num_stars %}checked{% endif %}"></span>
+    {% endfor %}
+{% endwith %}
+    <p>{{ avg_rating }} average based on {{ ratings.count }} reviews.</p>
+    {% if user.is_authenticated %}
+    <h3>{% trans 'Оцени продукт' %}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ rating_form.as_p }}
+        <button type="submit">{% trans 'Подтвердить' %}</button>
+    </form>
+    {% endif %}
     {% cache 300 product_detail product.pk %}
         <h1>{{ product.name }}</h1>
         <p>{% trans 'Цена:' %} {{ product.price }} $</p>
